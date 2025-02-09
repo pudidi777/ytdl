@@ -2,6 +2,4 @@ name = "youtube-downloader"
 account_id = "d9fde5658cb3c660e166e4d44b35205b"
 workers_dev = true
 compatibility_date = "2025-02-09"
-
-[env.production]
-main = "index.js"
+main = "./index.js"
