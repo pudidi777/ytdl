@@ -1,0 +1,19 @@
+{
+  "name": "youtube-downloader-workers",
+  "version": "1.0.0",
+  "description": "API YouTube downloader menggunakan @vreden/youtube_scraper di Cloudflare Workers",
+  "main": "index.js",
+  "scripts": {
+    "start": "wrangler dev",
+    "deploy": "wrangler publish"
+  },
+  "dependencies": {
+    "@vreden/youtube_scraper": "^1.2.4"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
