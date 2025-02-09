@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 async function handleRequest(request) {
     const url = new URL(request.url);
     const targetUrl = url.searchParams.get('url');
@@ -30,17 +32,23 @@ async function handleRequest(request) {
 
     const config = {
         method: method,
+        url: finalUrl.toString(),
         headers: headers,
-        body: body ? JSON.stringify(body) : undefined,
+        data: body,
+        responseType: 'arraybuffer', // Mengambil respons sebagai buffer untuk menangani semua tipe data
     };
 
     try {
-        const response = await fetch(finalUrl, config);
-        const responseData = await response.json();
-        return new Response(JSON.stringify(responseData), {
+        const response = await axios(config);
+
+        // Ambil Content-Type dari respons axios
+        const contentType = response.headers['content-type'] || 'application/octet-stream';
+
+        // Kembalikan respons dalam format aslinya
+        return new Response(response.data, {
             status: response.status,
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': contentType, // Gunakan Content-Type dari respons axios
             },
         });
     } catch (error) {
